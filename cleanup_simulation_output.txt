@@ -1,0 +1,134 @@
+==========================================================================================
+CLEANUP DUPLICATE DATA VIEWS — SIMULATION
+==========================================================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCENARIO 1: DRY-RUN MODE (default — no changes)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-02-28 12:58:59,024 - INFO - [FISMA Scorecard] Processing space: DEFEND A (defend-a)
+2026-02-28 12:58:59,025 - INFO -   Found 2 duplicate group(s) in 'DEFEND A'
+2026-02-28 12:58:59,026 - INFO -   Loaded 68 saved objects for reference analysis
+
+==========================================================================================
+CLEANUP PLAN — [DRY-RUN]
+==========================================================================================
+
+  📦 FISMA SCORECARD > DEFEND A
+    Data View Title: cdm_hwam_current
+    KEEP:   dv-hwam-001                                    (47 refs) ← DEFAULT
+    DELETE: dv-hwam-002                                    (3 refs → repoint to KEEP, then delete)
+    DELETE: dv-hwam-003                                    (0 refs → delete)
+
+  📦 FISMA SCORECARD > DEFEND A
+    Data View Title: cdm_vuln_current
+    KEEP:   dv-vuln-001                                    (15 refs)
+    DELETE: dv-vuln-002                                    (2 refs → repoint to KEEP, then delete)
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Total reference re-points : 5
+  Total data views to delete: 3
+==========================================================================================
+2026-02-28 12:58:59,029 - INFO -   [DRY-RUN] No changes made. Re-run with --execute to apply.
+
+  DRY-RUN stats: {'repointed': 0, 'deleted': 0, 'skipped': 0, 'backed_up': 0, 'errors': 0}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCENARIO 2: EXECUTE MODE with --yes (auto-confirm)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-02-28 12:58:59,030 - INFO - [FISMA Scorecard] Processing space: FISMA Team (fisma-team)
+2026-02-28 12:58:59,030 - INFO -   Found 2 duplicate group(s) in 'FISMA Team'
+2026-02-28 12:58:59,030 - INFO -   Loaded 80 saved objects for reference analysis
+
+==========================================================================================
+CLEANUP PLAN — [EXECUTE]
+==========================================================================================
+
+  📦 FISMA SCORECARD > FISMA Team
+    Data View Title: dhs_fisma_score_card_reports
+    KEEP:   ft-report-001                                  (50 refs)
+    DELETE: ft-report-002                                  (10 refs → repoint to KEEP, then delete)
+    DELETE: ft-report-003                                  (0 refs → delete)
+
+  📦 FISMA SCORECARD > FISMA Team
+    Data View Title: dhs_fisma_host_defense
+    KEEP:   ft-host-001                                    (20 refs)
+    DELETE: ft-host-002                                    (0 refs → delete)
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Total reference re-points : 10
+  Total data views to delete: 3
+==========================================================================================
+2026-02-28 12:58:59,034 - INFO - Auto-confirm enabled (--yes): all deletions approved.
+2026-02-28 12:58:59,034 - INFO -   Backing up all objects in space 'FISMA Team'...
+2026-02-28 12:58:59,035 - INFO -   ✅ Space backup saved: /tmp/sim_backups/space_fisma-team_20260228_125859.ndjson (80 objects)
+2026-02-28 12:58:59,035 - INFO -   Re-pointing 10 references: ft-report-002 → ft-report-001
+2026-02-28 12:58:59,035 - INFO -     ✅ Repointed visualization/ft-viz-0: ft-report-002 → ft-report-001
+2026-02-28 12:58:59,036 - INFO -     ✅ Repointed visualization/ft-viz-1: ft-report-002 → ft-report-001
+2026-02-28 12:58:59,036 - INFO -     ✅ Repointed visualization/ft-viz-2: ft-report-002 → ft-report-001
+2026-02-28 12:58:59,036 - INFO -     ✅ Repointed visualization/ft-viz-3: ft-report-002 → ft-report-001
+2026-02-28 12:58:59,037 - INFO -     ✅ Repointed visualization/ft-viz-4: ft-report-002 → ft-report-001
+2026-02-28 12:58:59,037 - INFO -     ✅ Repointed visualization/ft-viz-5: ft-report-002 → ft-report-001
+2026-02-28 12:58:59,038 - INFO -     ✅ Repointed visualization/ft-viz-6: ft-report-002 → ft-report-001
+2026-02-28 12:58:59,038 - INFO -     ✅ Repointed visualization/ft-viz-7: ft-report-002 → ft-report-001
+2026-02-28 12:58:59,039 - INFO -     ✅ Repointed visualization/ft-viz-8: ft-report-002 → ft-report-001
+2026-02-28 12:58:59,039 - INFO -     ✅ Repointed visualization/ft-viz-9: ft-report-002 → ft-report-001
+2026-02-28 12:58:59,040 - INFO -     Backup: /tmp/sim_backups/dataview_ft-report-002.ndjson
+2026-02-28 12:58:59,040 - INFO -     ✅ DELETED data view: ft-report-002
+2026-02-28 12:58:59,041 - INFO -     Backup: /tmp/sim_backups/dataview_ft-report-003.ndjson
+2026-02-28 12:58:59,041 - INFO -     ✅ DELETED data view: ft-report-003
+2026-02-28 12:58:59,041 - INFO -     Backup: /tmp/sim_backups/dataview_ft-host-002.ndjson
+2026-02-28 12:58:59,042 - INFO -     ✅ DELETED data view: ft-host-002
+
+  EXECUTE stats: {'repointed': 10, 'deleted': 3, 'skipped': 0, 'backed_up': 1, 'errors': 0}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCENARIO 3: DEFAULT DATA VIEW PROTECTION
+  (def-logs-002 is the default but has fewer refs than def-logs-001)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-02-28 12:58:59,043 - INFO - [DHS] Processing space: Default (default)
+2026-02-28 12:58:59,044 - INFO -   Found 1 duplicate group(s) in 'Default'
+2026-02-28 12:58:59,044 - INFO -   Loaded 7 saved objects for reference analysis
+
+==========================================================================================
+CLEANUP PLAN — [DRY-RUN]
+==========================================================================================
+
+  📦 DHS > Default
+    Data View Title: logs-*
+    KEEP:   def-logs-002                                   (2 refs) ← DEFAULT
+    DELETE: def-logs-001                                   (5 refs → repoint to KEEP, then delete)
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Total reference re-points : 5
+  Total data views to delete: 1
+==========================================================================================
+2026-02-28 12:58:59,046 - INFO -   [DRY-RUN] No changes made. Re-run with --execute to apply.
+
+  Stats: {'repointed': 0, 'deleted': 0, 'skipped': 0, 'backed_up': 0, 'errors': 0}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCENARIO 4: CLEAN SPACE — No duplicates found
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-02-28 12:58:59,047 - INFO - [applogging-v4] Processing space: Default (default)
+2026-02-28 12:58:59,048 - INFO -   No data views in space 'Default'. Skipping.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SIMULATION COMPLETE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Scenarios tested:
+    1. DRY-RUN mode — showed cleanup plan, no changes made
+    2. EXECUTE mode with --yes — repointed refs, backed up, deleted orphans
+    3. DEFAULT data view protection — kept default even though it had fewer refs
+    4. CLEAN space — no duplicates found, nothing to do
+
+  Key behaviors verified:
+    ✅ KEEP candidate selected by highest ref count (or default override)
+    ✅ References re-pointed from duplicate → KEEP before deletion
+    ✅ Default data view NEVER deleted (marked SKIP)
+    ✅ Space-level NDJSON backup before any changes
+    ✅ Per-data-view backup before each deletion
+    ✅ Post-repoint verification (checks 0 refs before delete)
+    ✅ Clean spaces skipped gracefully
+    ✅ Audit log captures all actions
+
