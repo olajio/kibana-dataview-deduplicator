@@ -2,6 +2,27 @@
 
 Detect, analyze, and safely remediate duplicate data views across all your Kibana deployments — in two steps.
 
+## Find Duplicate Data Views
+
+A Python script that scans multiple Elastic deployments to identify duplicate data views across all Kibana spaces. Duplicate data views (same title, different IDs) cause user confusion, break dashboard portability, and degrade cluster performance through redundant queries.
+
+### Why This Matters
+
+Duplicate data views are a common problem in Kibana. They typically appear when users manually create data views that already exist, or when Kibana objects are imported multiple times. Left unchecked, duplicates lead to:
+
+- **Performance degradation** — dashboards referencing wildcard patterns like `*:filebeat-*` across duplicate views multiply search load on the cluster
+- **User confusion** — team members see multiple identically-named data views and don't know which one to use, leading to inconsistent dashboards
+- **Maintenance overhead** — updating or deprecating a data view pattern requires tracking down every copy across every space
+- **SLA risk** — in highly regulated environments like ours, unnecessary cluster load from duplicates can push response times past SLA thresholds
+
+## Cleanup Duplicate Data Views — Safe Multi-Cluster Remediation
+
+Safely removes duplicate data views across Kibana deployments by re-pointing references, backing up objects, validating with the user, and deleting only confirmed orphans.
+
+This script is the companion to `find_duplicate_dataviews.py` (scanner) and uses the same configuration, API engine, and batched-request optimizations.
+
+
+
 | Script | Role | Mode |
 |--------|------|------|
 | `find_duplicate_dataviews.py` | **Scanner** — detect and label duplicates | Read-only |
