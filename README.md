@@ -220,7 +220,7 @@ For each configured cluster, the script:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                    find_duplicate_dataviews.py                       │
+│                    find_duplicate_dataviews.py                      │
 └─────────────────────┬───────────────────────────────────────────────┘
                       │
                       ▼
@@ -255,7 +255,7 @@ For each configured cluster, the script:
     │     → Get all data views         │
     │                                  │
     │  2. Group by title               │
-    │     → Find titles with 2+ IDs   │
+    │     → Find titles with 2+ IDs    │
     │                                  │
     │  3. GET /api/data_views/default  │
     │     → Detect default data view   │
@@ -270,10 +270,10 @@ For each configured cluster, the script:
     ┌──────────────────────────────────┐
     │  Label each duplicate:           │
     │                                  │
-    │  ├─ is_default? ──► KEEP (DEFAULT)│
-    │  ├─ highest refs? ─► KEEP        │
-    │  ├─ refs > 0? ─────► REVIEW      │
-    │  └─ refs == 0? ────► SAFE TO DEL │
+    │ ├─ is_default? ──► KEEP (DEFAULT)│
+    │ ├─ highest refs? ─► KEEP         │
+    │ ├─ refs > 0? ─────► REVIEW       │
+    │ └─ refs == 0? ────► SAFE TO DEL  │
     └──────────────┬───────────────────┘
                    │
                    ▼
@@ -495,7 +495,7 @@ The cleanup script uses the same scan engine as the scanner, then extends it wit
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│              cleanup_duplicate_dataviews.py                          │
+│              cleanup_duplicate_dataviews.py                         │
 └─────────────────────┬───────────────────────────────────────────────┘
                       │
                       ▼
@@ -538,7 +538,7 @@ The cleanup script uses the same scan engine as the scanner, then extends it wit
       ▼
     ┌──────────────────────────────────┐
     │  STEP 4 — Backup Space           │
-    │  Export ALL objects to NDJSON     │
+    │  Export ALL objects to NDJSON    │
     │  (full restore point)            │
     └──────────────┬───────────────────┘
                    │
